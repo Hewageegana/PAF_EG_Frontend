@@ -52,10 +52,13 @@ public String InsertPowerConsumptionDetails(String userID, String account_Number
 		 
 		 preparedStmt.execute(); 
 		 con.close(); 
+		 String newCons = readPwerConsumption();
+			output = "{\"status\":\"success\", \"data\": \"" +newCons+ "\"}";
 		 output = "Inserted successfully"; 
 	}
 	catch (Exception e) {
-		 output = "Error while inserting the Power Consumption."; 
+		  
+		 output = "{\"status\":\"error\", \"data\":\"Error while Inserting the Power Consumption.\"}";
 		 System.err.println(e.getMessage()); 
 	}
 	
@@ -76,14 +79,17 @@ public String readPwerConsumption() {
 		}
 		
 		 // Prepare the html table to be displayed
-		 output = "<table border='1'>"
+		 output = "<table class='table' border='1'>"
+				 +"<thead>"
 		 		+ "<tr>"
 		 		+ "<th>Customer ID</th>"
 		 		+ "<th>Account Number</th>" +
 		 		  "<th>CustomerName</th>" + 
 		 		  "<th>Units</th>" +
 		 		  "<th>Days</th>" +	
-		 		 "<th>Generated Date</th></tr>";
+		 		 "<th>Generated Date</th>"+
+		 		 "<th>Update</th>"+
+		 		 "<th>Delete</th></tr></thead>";
 		 
 		 String query = "select * from power_consumption"; 
 		 Statement stmt = con.createStatement(); 
@@ -91,6 +97,7 @@ public String readPwerConsumption() {
 		 
 		 while(rs.next()) {
 			 
+			 String idpower_consumption = Integer.toString(rs.getInt("idpower_consumption"));
 			 String userID = rs.getString("userID");
 			 String account_Number = rs.getString("account_Number"); 
 			 String cus_name = rs.getString("cus_name"); 
@@ -100,7 +107,7 @@ public String readPwerConsumption() {
 			
 			 
 			 // Add into the HTML table
-			 output += "<tr><td>" + userID + "</td>"; 
+			 output += "<tr><td> <input id='hididUpdate' name='hididUpdate' type='hidden' value=" + idpower_consumption + ">" + userID + "</td>"; 
 			 output += "<td>" + account_Number + "</td>";
 			 output += "<td>" + cus_name + "</td>"; 
 			 output += "<td>" + units + "</td>"; 
@@ -109,6 +116,9 @@ public String readPwerConsumption() {
 			 
 			 
 			 // buttons
+			 output += "<td><input id='btnUpdate'  name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'></td>"
+						+ "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-idpower_consumption='"
+						+ idpower_consumption + "'>" + "</td></tr>";
 			
 		 }
 		 con.close(); 
@@ -126,7 +136,7 @@ public String readPwerConsumption() {
 
 //Update
 
-public String updateConsumption(String userID, String account_Number, String cus_name, String units, String days,String generated_date) {
+public String updateConsumption(String idpower_consumption, String userID, String account_Number, String cus_name, String units, String days,String generated_date) {
 	
 	String output = "";
 	
@@ -137,28 +147,31 @@ public String updateConsumption(String userID, String account_Number, String cus
 		{return  "Error while connecting to the database for updating.";}
 		
 		// create a prepared statement
-		String query = "  UPDATE power_consumption SET account_Number=?,cus_name=?,units=?,days=?,generated_date=? where userID=?"  ;
+		String query = "  UPDATE power_consumption SET userID=?,account_Number=?,cus_name=?,units=?,days=?,generated_date=? where idpower_consumption=?"  ;
 		
 		PreparedStatement preparedStmt = con.prepareStatement(query);
 		
 		 // binding values
-		  
-		 preparedStmt.setString(1, account_Number); 
-		 preparedStmt.setString(2, cus_name); 
-		 preparedStmt.setString(3, units);
-		 preparedStmt.setString(4, days);
-		 preparedStmt.setString(5, generated_date);
-		 preparedStmt.setString(6,userID); 
+		 preparedStmt.setString(1,userID); 
+		 preparedStmt.setString(2, account_Number); 
+		 preparedStmt.setString(3, cus_name); 
+		 preparedStmt.setString(4, units);
+		 preparedStmt.setString(5, days);
+		 preparedStmt.setString(6, generated_date);
 		 
 		 
+		 preparedStmt.setInt(7, Integer.parseInt(idpower_consumption));
 		// execute the statement
 		 
 		 preparedStmt.execute(); 
 		 con.close(); 
-		 output = "Updated successful"; 
+		 String newcons = readPwerConsumption();
+		output = "{\"status\":\"success\", \"data\": \"" +newcons+ "\"}";
+//		 output = "Updated successful"; 
 	}
 	catch (Exception e) {
-		 output = "Error while Update the Customer."; 
+		output = "{\"status\":\"error\", \"data\":\"Error while Updating the Power Consumption.\"}";
+		 
 		 System.err.println(e.getMessage()); 
 	}
 	
@@ -166,7 +179,7 @@ public String updateConsumption(String userID, String account_Number, String cus
 	}
 
 //Delete
-public String deleteConsume(String userID) {
+public String deleteConsume(String idpower_consumption) {
 	 String output = ""; 
 	 try {
 		 Connection con = connect(); 
@@ -175,22 +188,25 @@ public String deleteConsume(String userID) {
 		 {return "Error while connecting to the database for deleting."; }
 		 
 		 // create a prepared statement
-		 String query = "delete from power_consumption where userID=?"; 
+		 String query = "delete from power_consumption where idpower_consumption=?"; 
 		 
 		 PreparedStatement preparedStmt = con.prepareStatement(query); 
 		 
 		 // binding values
-		 preparedStmt.setInt(1, Integer.parseInt(userID)); 
+		 System.out.println(idpower_consumption+"=-----------------------------------------------------");
+		 
+		 preparedStmt.setInt(1, Integer.parseInt(idpower_consumption)); 
 		 
 		 // execute the statement
 		 preparedStmt.execute(); 
 		 con.close(); 
 		 
-		 output = "Deleted successfully"; 
+		 String newcons = readPwerConsumption();
+			output = "{\"status\":\"success\", \"data\": \"" +newcons+ "\"}";
 	 }
 	 catch (Exception e) 
 	 { 
-		 output = "Error while deleting the customer."; 
+		 output = "{\"status\":\"error\", \"data\":\"Error while Deleting the Consumption.\"}";
 		 System.err.println(e.getMessage()); 
 	 } 
 	 
