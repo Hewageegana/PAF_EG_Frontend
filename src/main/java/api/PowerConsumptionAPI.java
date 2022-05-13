@@ -72,9 +72,10 @@ public class PowerConsumptionAPI extends HttpServlet {
 
 		Map paras = getParasMap(request);
 		String output = "";
-			if(paras.get("idcustomer") != null) {
+			if(paras.get("idpower_consumption") != null) {
 				output = powerconsObj.updateConsumption(
 						
+						paras.get("idpower_consumption").toString(),
 						paras.get("userID").toString(),
 						paras.get("account_Number").toString(),
 						paras.get("cus_name").toString(),
@@ -86,6 +87,7 @@ public class PowerConsumptionAPI extends HttpServlet {
 			else {
 				output = powerconsObj.updateConsumption(
 						
+						request.getParameter("idpower_consumption"),
 						request.getParameter("userID"),
 						request.getParameter("account_Number"),
 						request.getParameter("cus_name"),
@@ -105,12 +107,14 @@ public class PowerConsumptionAPI extends HttpServlet {
 		Map paras = getParasMap(request);
 		String output = "";
 		
-		if (paras.get("idcustomer") != null) {
-			output = powerconsObj.deleteConsume(paras.get("userID").toString());
+		if (paras.get("idpower_consumption") != null) {
+			 System.out.println(paras.get("userID") +"=-----------------------------------------------------");
+
+			output = powerconsObj.deleteConsume(paras.get("idpower_consumption").toString());
 			
 		}
 		else {
-			output = powerconsObj.deleteConsume(request.getParameter("userID"));
+			output = powerconsObj.deleteConsume(request.getParameter("idpower_consumption"));
 		}
 		System.out.println("ID: " + output);
 		response.getWriter().write(output);
