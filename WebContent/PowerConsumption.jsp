@@ -76,14 +76,14 @@
 <body>
 <div class="consumptionForm" >
 	<div class="container">
-<form class="row g-3"  id="consumptionForm" name="consumptionForm" method="post" action="PowerConsumption.jsp">
+<form class="row g-3"  id="consumptionForm" name="consumptionForm" method="post" action="PowerConsumptionAPI">
   <div class="col-md-2">
     <label for="userid" class="form-label" >User ID</label>
-    <input type="text" class="form-control" id="userid" name="userid" placeholder="User ID" >
+    <input type="number" class="form-control" id="userID" name="userID" placeholder="User ID" >
   </div>
   <div class="col-12">
     <label for="inputAddress" class="form-label">Account Number</label>
-    <input type="text" class="form-control" id="acc_no" name="acc_no" placeholder="Account Number">
+    <input type="number" class="form-control" id="account_Number" name="account_Number" placeholder="Account Number">
   </div>
   <div class="col-12">
     <label for="inputAddress" class="form-label">Customer Name</label>
@@ -93,21 +93,21 @@
  
   <div class="col-md-4">
     <label for="inputState" class="form-label">Units</label>
-    <input type="text" name="" id="units" name="units" class="form-control" placeholder="Units" /> 
+    <input type="number" name="units" id="units" name="units" class="form-control" placeholder="Units" /> 
       
   </div>
   <div class="col-md-2">
     <label for="inputZip" class="form-label">Days</label>
-    <input type="text" class="form-control" id="days" name="days" placeholder="Days">
+    <input type="text" class="form-control" id="days" name="days" placeholder="Days"/>
   </div><br/><br/>
    <div class="col-md-6">
     <label for="inputCity" class="form-label">Generated date</label>
-    <input type="input" class="form-control" id="gen_date" name="gen_date" placeholder="Generated date">
+    <input type="date" class="form-control" id="generated_date" name="generated_date" placeholder="Generated date"/>
   </div>
   
  <input id="btnSave" name="btnSave" type="button" value="Save"
-			class="btn btn-primary"> <input type="hidden"
-				id="idpower_consumption" name="idpower_consumption" value="">
+			class="btn btn-primary"/> <input type="hidden"
+				id="idpower_consumption" name="idpower_consumption" value=""/>
   
 </form>
 </div>
@@ -115,7 +115,7 @@
 <div id="alertSuccess" class="alert alert-success"></div>
 					<div id="alertError" class="alert alert-danger"></div>
 					<br> <br>
-					<div id="divUserGrid" class="table-container">
+					<div id="divUserGrid" class="table-container" name="divUserGrid">
 						<%
 						PowerConsumption powerconsObj = new PowerConsumption();
 											out.print(powerconsObj.readPwerConsumption());

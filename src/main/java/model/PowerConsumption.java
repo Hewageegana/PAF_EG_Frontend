@@ -11,7 +11,7 @@ public class PowerConsumption {
 		
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			
 			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/eg_online_system", "root", "rusiru123");
 		}
@@ -32,6 +32,7 @@ public String InsertPowerConsumptionDetails(String userID, String account_Number
 		if (con == null)
 		{return  "Error while connecting to the database for inserting.";}
 		
+		
 		// create a prepared statement
 		
 		String query = "  insert into power_consumption (`idpower_consumption`,`userID`,`account_Number`,`cus_name`,`units`,`days`,`generated_date`)" + " values (?, ?, ?, ?, ?, ?, ?)";
@@ -51,10 +52,11 @@ public String InsertPowerConsumptionDetails(String userID, String account_Number
 		// execute the statement
 		 
 		 preparedStmt.execute(); 
+
 		 con.close(); 
 		 String newCons = readPwerConsumption();
 			output = "{\"status\":\"success\", \"data\": \"" +newCons+ "\"}";
-		 output = "Inserted successfully"; 
+			//output = "Inserted successfully"; 
 	}
 	catch (Exception e) {
 		  
@@ -80,7 +82,7 @@ public String readPwerConsumption() {
 		
 		 // Prepare the html table to be displayed
 		 output = "<table class='table' border='1'>"
-				 +"<thead>"
+				+"<thead>"
 		 		+ "<tr>"
 		 		+ "<th>Customer ID</th>"
 		 		+ "<th>Account Number</th>" +
@@ -116,7 +118,7 @@ public String readPwerConsumption() {
 			 
 			 
 			 // buttons
-			 output += "<td><input id='btnUpdate'  name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'></td>"
+			 output += "<td><input id='btnUpdate'  name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary' ></td>"
 						+ "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-idpower_consumption='"
 						+ idpower_consumption + "'>" + "</td></tr>";
 			
@@ -193,7 +195,7 @@ public String deleteConsume(String idpower_consumption) {
 		 PreparedStatement preparedStmt = con.prepareStatement(query); 
 		 
 		 // binding values
-		 System.out.println(idpower_consumption+"=-----------------------------------------------------");
+		
 		 
 		 preparedStmt.setInt(1, Integer.parseInt(idpower_consumption)); 
 		 
