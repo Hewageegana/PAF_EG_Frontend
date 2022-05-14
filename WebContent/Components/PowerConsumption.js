@@ -67,8 +67,8 @@ if (status == "success")
  		$("#alertError").text("Unknown error while saving..");
  		$("#alertError").show();
  	}
-		$("#idcustomer").val("");
-		$("#formCustomer")[0].reset();
+		$("#idpower_consumption").val("");
+		$("#consumptionForm")[0].reset();
 }
 
 
@@ -130,13 +130,13 @@ if (status == "success")
 function validateInsertForm()
 {
 	//cus_name
-if ($("#userid").val().trim() == "")
+if ($("#userID").val().trim() == "")
 {
 return "Insert User ID.";
 }
 
 //cus_address
-if ($("#acc_no").val().trim() == "")
+if ($("#account_Number").val().trim() == "")
 {
 return "Insert Account No.";
 }
@@ -160,7 +160,7 @@ return "Insert Days.";
 }
 
 //password
-if ($("#gen_date").val().trim() == "")
+if ($("#generated_date").val().trim() == "")
 {
 return "Insert Geerate Date.";
 }

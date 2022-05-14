@@ -51,7 +51,7 @@ public class PowerConsumptionAPI extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		
+//System.out.println("Insert API------------------------");		
 		String output = powerconsObj.InsertPowerConsumptionDetails(
 				request.getParameter("userID"),
 				request.getParameter("account_Number"),
@@ -108,7 +108,7 @@ public class PowerConsumptionAPI extends HttpServlet {
 		String output = "";
 		
 		if (paras.get("idpower_consumption") != null) {
-			 System.out.println(paras.get("userID") +"=-----------------------------------------------------");
+			 
 
 			output = powerconsObj.deleteConsume(paras.get("idpower_consumption").toString());
 			
