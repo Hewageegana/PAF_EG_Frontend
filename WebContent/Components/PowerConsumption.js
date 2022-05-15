@@ -129,37 +129,37 @@ if (status == "success")
 //CLIENTMODEL=========================================================================
 function validateInsertForm()
 {
-	//cus_name
+	//user_ID
 if ($("#userID").val().trim() == "")
 {
 return "Insert User ID.";
 }
 
-//cus_address
+//account_number
 if ($("#account_Number").val().trim() == "")
 {
 return "Insert Account No.";
 }
 
-//cus_phone_no
+//name
 if ($("#cus_name").val().trim() == "")
 {
 return "Insert Customer Name.";
 }
 
-//cus_nic
+//units
 if ($("#units").val().trim() == "")
 {
 return "Insert Units.";
 }
 
-//username
+//days
 if ($("#days").val().trim() == "")
 {
 return "Insert Days.";
 }
 
-//password
+//gen_date
 if ($("#generated_date").val().trim() == "")
 {
 return "Insert Geerate Date.";
