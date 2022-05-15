@@ -82,26 +82,26 @@
     <input type="number" class="form-control" id="userID" name="userID" placeholder="User ID" >
   </div>
   <div class="col-12">
-    <label for="inputAddress" class="form-label">Account Number</label>
+    <label for="AccountNumber" class="form-label">Account Number</label>
     <input type="number" class="form-control" id="account_Number" name="account_Number" placeholder="Account Number">
   </div>
   <div class="col-12">
-    <label for="inputAddress" class="form-label">Customer Name</label>
+    <label for="CustomerName" class="form-label">Customer Name</label>
     <input type="text" class="form-control" id="cus_name" name="cus_name" placeholder="Customer Name">
   </div>
  
  
   <div class="col-md-4">
-    <label for="inputState" class="form-label">Units</label>
+    <label for="Units" class="form-label">Units</label>
     <input type="number" name="units" id="units" name="units" class="form-control" placeholder="Units" /> 
       
   </div>
   <div class="col-md-2">
-    <label for="inputZip" class="form-label">Days</label>
+    <label for="Days" class="form-label">Days</label>
     <input type="text" class="form-control" id="days" name="days" placeholder="Days"/>
   </div><br/><br/>
    <div class="col-md-6">
-    <label for="inputCity" class="form-label">Generated date</label>
+    <label for="Generateddate" class="form-label">Generated date</label>
     <input type="date" class="form-control" id="generated_date" name="generated_date" placeholder="Generated date"/>
   </div>
   

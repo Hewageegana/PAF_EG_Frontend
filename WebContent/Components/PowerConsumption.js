@@ -76,12 +76,12 @@ if (status == "success")
 $(document).on("click", ".btnUpdate", function(event)
 {
  $("#idpower_consumption").val($(this).closest("tr").find('#hididUpdate').val());
- $("#userid").val($(this).closest("tr").find('td:eq(0)').text());
- $("#acc_no").val($(this).closest("tr").find('td:eq(1)').text());
+ $("#userID").val($(this).closest("tr").find('td:eq(0)').text());
+ $("#account_Number").val($(this).closest("tr").find('td:eq(1)').text());
  $("#cus_name").val($(this).closest("tr").find('td:eq(2)').text());
  $("#units").val($(this).closest("tr").find('td:eq(3)').text());
  $("#days").val($(this).closest("tr").find('td:eq(4)').text());
- $("#gen_date").val($(this).closest("tr").find('td:eq(5)').text());
+ $("#generated_date").val($(this).closest("tr").find('td:eq(5)').text());
 
 });
 
