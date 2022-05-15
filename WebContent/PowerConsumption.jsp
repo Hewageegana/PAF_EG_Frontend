@@ -79,7 +79,7 @@
 <form class="row g-3"  id="consumptionForm" name="consumptionForm" method="post" action="PowerConsumptionAPI">
   <div class="col-md-2">
     <label for="userid" class="form-label" >User ID</label>
-    <input type="number" class="form-control" id="userID" name="userID" placeholder="User ID" >
+    <input type="text" class="form-control" id="userID" name="userID" placeholder="User ID" >
   </div>
   <div class="col-12">
     <label for="AccountNumber" class="form-label">Account Number</label>
